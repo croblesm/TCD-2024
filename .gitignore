@@ -439,3 +439,16 @@ $RECYCLE.BIN/
 
 # User-specific files
 *.
+
+# Azure Functions local settings file
+local.settings.json
+
+# Azure Functions local development tools generated files
+funcignore
+
+# Azure build output
+bin/
+obj/
+
+# Ignore the .vscode folder
+.vscode/
