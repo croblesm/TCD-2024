@@ -2,7 +2,6 @@ Certainly! A typical `.gitignore` file for C# projects would exclude compiled bi
 
 ```gitignore
 # Visual Studio Code
-.vscode/
 
 # Rider
 .idea/
@@ -29,7 +28,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -63,7 +61,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -97,7 +94,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -131,7 +127,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -165,7 +160,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -199,7 +193,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -233,7 +226,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -267,7 +259,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -301,7 +292,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -335,7 +325,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -369,7 +358,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -403,7 +391,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
@@ -437,7 +424,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # VS Code directories
-.vscode/
 
 # Windows Installer files
 *.cab
