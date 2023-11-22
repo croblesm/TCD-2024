@@ -26,6 +26,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LocalDev.xml.publish.xml" />
+    <None Include="Scripts\agendaDummyData.sql" />
+    <None Include="Scripts\speakersDummyData.sql" />
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />

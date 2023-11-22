@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 namespace TCD2024.Speakers
@@ -11,33 +11,42 @@ namespace TCD2024.Speakers
     public static class GetSpeakers
     {
         // Visit https://aka.ms/sqlbindingsinput to learn how to use this input binding
-        [FunctionName("GetSpeakers")]
-        public static async Task<IActionResult> Run(
+        [FunctionName("getSpeakers")]
+        public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "speakers/{id?}")]
             HttpRequest req,
-            string id,
-            [Sql("select * from speakers","SqlConnectionString")]
-            IAsyncEnumerable<Speaker> speakers,
+            [Sql(commandText: "getSpeakers", commandType: System.Data.CommandType.StoredProcedure, 
+                parameters: "@SpeakerID={id}", connectionStringSetting: "SqlConnectionString")] 
+                IEnumerable<Speaker> speakers,
             ILogger log)
         {
-            log.LogInformation("Processing speakers request ...");
+            log.LogInformation("Processing request...");
 
-            IAsyncEnumerator<Speaker> enumerator = speakers.GetAsyncEnumerator();
-            var listSpeaker = new List<Speaker>();
-            while (await enumerator.MoveNextAsync())
+            // If no speakers are returned, return NotFound
+            if (speakers == null || !speakers.Any())
             {
-                if (string.IsNullOrEmpty(id) || enumerator.Current.SpeakerID == int.Parse(id))
+                log.LogInformation("No speakers found.");
+                return new NotFoundResult();
+            }
+
+            // If a specific speaker ID is provided, return only that speaker
+            if (req.Query.ContainsKey("id"))
+            {
+                var speaker = speakers.FirstOrDefault();
+                if (speaker != null)
                 {
-                    listSpeaker.Add(enumerator.Current);
+                    log.LogInformation($"Found 1 speaker with ID {speaker.SpeakerID}.");
+                    return new OkObjectResult(speaker);
                 }
             }
-            await enumerator.DisposeAsync();
-            
-            log.LogInformation($"Found {listSpeaker.Count} speakers.");
 
-            return new OkObjectResult(listSpeaker);
+            // If no specific speaker ID is provided, return all speakers
+            var listSpeakers = new List<Speaker>(speakers);
+            log.LogInformation($"Found {listSpeakers.Count} speakers.");
+            return new OkObjectResult(listSpeakers);
         }
     }
+
     public class Speaker
     {
         public int SpeakerID { get; set; }
@@ -51,5 +60,4 @@ namespace TCD2024.Speakers
         public string GitHubProfile { get; set; }
         public string Website { get; set; }
     }
-
 }
