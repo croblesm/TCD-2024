@@ -19,15 +19,15 @@
     </SqlCmdVariable>
   </ItemGroup>
   <ItemGroup>
-    <None Include="LocalDev.xml.publish.xml" />
     <None Include="Scripts\agendaDummyData.sql" />
     <None Include="Scripts\speakersDummyData.sql" />
+    <None Include="TCD-2024.publish.xml.publish.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+    <PreDeploy Include="Scripts\loginCreation.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PreDeploy Include="Scripts\Script.PreDeployment.sql" />
+    <PostDeploy Include="Scripts\userCreation.sql" />
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />

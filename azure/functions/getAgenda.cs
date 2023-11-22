@@ -19,16 +19,43 @@ namespace TCD2024.Agenda
             HttpRequest req,
             [Sql(commandText: "getAgenda", commandType: System.Data.CommandType.StoredProcedure, 
                 parameters: "@AgendaID={id}", connectionStringSetting: "SqlConnectionString")] 
-                IEnumerable<Agenda> agendas,
+                IEnumerable<dynamic> results,
             ILogger log)
         {
-            log.LogInformation("Processing request...");
-
-            // If no agendas are returned, return NotFound
-            if (agendas == null || !agendas.Any())
+            if (results == null || !results.Any())
             {
                 log.LogInformation("No agendas found.");
                 return new NotFoundResult();
+            }
+
+            var agendas = new List<Agenda>();
+
+            foreach (var result in results)
+            {
+                var agenda = new Agenda
+                {
+                    AgendaId = result.AgendaID,
+                    StartTime = result.StartTime,
+                    EndTime = result.EndTime,
+                    Title = result.Title,
+                    Description = result.Description,
+                    SpeakerId = result.SpeakerId,
+                    Speaker = new Speaker
+                    {
+                        SpeakerID = result.SpeakerID,
+                        FirstName = result.FirstName,
+                        LastName = result.LastName,
+                        Title = result.Title,
+                        Bio = result.Bio,
+                        PhotoUrl = result.PhotoUrl,
+                        TwitterHandle = result.TwitterHandle,
+                        LinkedInProfile = result.LinkedInProfile,
+                        GitHubProfile = result.GitHubProfile,
+                        Website = result.Website
+                    }
+                };
+
+                agendas.Add(agenda);
             }
 
             // If a specific agenda ID is provided, return only that agenda item
@@ -43,22 +70,21 @@ namespace TCD2024.Agenda
             }
 
             // If no specific agenda ID is provided, return all agenda items
-            var listAgendas = new List<Agenda>(agendas);
-            log.LogInformation($"Found {listAgendas.Count} agenda items.");
-            return new OkObjectResult(listAgendas);
+            log.LogInformation($"Found {agendas.Count} agenda items.");
+            return new OkObjectResult(agendas);
         }
     }
 
-public class Agenda
-{
-    public int AgendaId { get; set; }
-    public System.DateTime StartTime { get; set; }
-    public System.DateTime EndTime { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public int? SpeakerId { get; set; }
-    public Speaker Speaker { get; set; }
-}
+    public class Agenda
+    {
+        public int? AgendaId { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public int? SpeakerId { get; set; }
+        public Speaker Speaker { get; set; }
+    }
     public class Speaker
     {
         public int SpeakerID { get; set; }
@@ -71,6 +97,7 @@ public class Agenda
         public string LinkedInProfile { get; set; }
         public string GitHubProfile { get; set; }
         public string Website { get; set; }
-        public virtual ICollection<Agenda> Agendas { get; set; }
+        //public virtual ICollection<Agenda> Agendas { get; set; }
+        public List<Agenda> Agendas { get; set; }
     }
 }
