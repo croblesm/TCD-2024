@@ -27,7 +27,7 @@
 		</CustomData>
 	</Header>
 	<Model>
-		<Element Type="SqlDatabaseOptions">
+		<Element Type="SqlDatabaseOptions" Disambiguator="1">
 			<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
 			<Property Name="IsAnsiNullDefaultOn" Value="True" />
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -66,7 +66,7 @@
 					<References Name="[dbo].[Speakers]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -85,7 +85,7 @@
 					<References Name="[dbo].[Speakers]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -104,7 +104,46 @@
 					<References Name="[dbo].[Agenda]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+		</Element>
+		<Element Type="SqlRoleMembership">
+			<Relationship Name="Member">
+				<Entry>
+					<References Name="[AppUser]" Disambiguator="2" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Role">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[db_datareader]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlRoleMembership">
+			<Relationship Name="Member">
+				<Entry>
+					<References Name="[AppUser]" Disambiguator="2" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Role">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[db_datawriter]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlLogin" Name="[AppUser]">
+			<Property Name="Password" Value="$(appPassword)" />
+			<Annotation Type="GloballyScoped" />
+		</Element>
+		<Element Type="SqlUser" Name="[AppUser]" Disambiguator="2">
+			<Property Name="LoginIdentifierScript">
+				<Value><![CDATA[AppUser]]></Value>
+			</Property>
+			<Property Name="AuthenticationType" Value="1" />
+			<Relationship Name="Login">
+				<Entry>
+					<References Name="[AppUser]" />
+				</Entry>
+			</Relationship>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[addAgendaItem]">
 			<Property Name="BodyScript">
@@ -483,7 +522,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="5" />
+						<AttachedAnnotation Disambiguator="9" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -561,7 +600,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="3" />
+						<AttachedAnnotation Disambiguator="7" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -695,7 +734,7 @@ ELSE
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="4" />
+						<AttachedAnnotation Disambiguator="8" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -846,6 +885,19 @@ ELSE
 			<Relationship Name="Schema">
 				<Entry>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlPermissionStatement" Name="[Grant.Execute.Database].[AppUser].[dbo]">
+			<Property Name="Permission" Value="1070" />
+			<Relationship Name="Grantee">
+				<Entry>
+					<References Name="[AppUser]" Disambiguator="2" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="SecuredObject">
+				<Entry>
+					<References Disambiguator="1" />
 				</Entry>
 			</Relationship>
 		</Element>
