@@ -613,29 +613,37 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 		<Element Type="SqlProcedure" Name="[dbo].[getAgenda]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-IF @AgendaID IS NULL
-    SELECT * FROM Agenda; -- Get all agenda items if no ID is provided
-ELSE
-    SELECT * FROM Agenda WHERE AgendaID = @AgendaID; -- Get specific agenda item if ID is provided]]></Value>
+BEGIN
+    SELECT a.*, s.*
+    FROM Agenda a
+    INNER JOIN Speakers s ON a.SpeakerId = s.SpeakerId
+    WHERE a.AgendaId = @AgendaID
+END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
-					<References Name="[dbo].[getAgenda].[@AgendaID]" />
-				</Entry>
-				<Entry>
 					<References Name="[dbo].[Agenda]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Speakers]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Agenda].[SpeakerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[SpeakerID]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[Agenda].[AgendaID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[getAgenda].[@AgendaID]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
 				<Entry>
 					<Element Type="SqlSubroutineParameter" Name="[dbo].[getAgenda].[@AgendaID]">
-						<Property Name="DefaultExpressionScript">
-							<Value><![CDATA[NULL]]></Value>
-						</Property>
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -657,10 +665,10 @@ ELSE
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="47" />
-				<Property Name="Length" Value="297" />
+				<Property Name="Length" Value="230" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to get agenda items&#xA;CREATE PROCEDURE getAgenda&#xA;    @AgendaID int = NULL&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to get agenda items&#xA;CREATE PROCEDURE getAgenda&#xA;    @AgendaID INT&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[getSpeakers]">

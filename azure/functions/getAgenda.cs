@@ -59,7 +59,6 @@ public class Agenda
     public int? SpeakerId { get; set; }
     public Speaker Speaker { get; set; }
 }
-
     public class Speaker
     {
         public int SpeakerID { get; set; }

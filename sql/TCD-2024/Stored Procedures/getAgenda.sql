@@ -1,9 +1,10 @@
 -- Create stored procedure to get agenda items
 CREATE PROCEDURE getAgenda
-    @AgendaID int = NULL
+    @AgendaID INT
 AS
-IF @AgendaID IS NULL
-    SELECT * FROM Agenda; -- Get all agenda items if no ID is provided
-ELSE
-    SELECT * FROM Agenda WHERE AgendaID = @AgendaID; -- Get specific agenda item if ID is provided
-GO
+BEGIN
+    SELECT a.*, s.*
+    FROM Agenda a
+    INNER JOIN Speakers s ON a.SpeakerId = s.SpeakerId
+    WHERE a.AgendaId = @AgendaID
+END
