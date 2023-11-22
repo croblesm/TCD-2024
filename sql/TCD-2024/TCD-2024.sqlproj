@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build">
+  <Sdk Name="Microsoft.Build.Sql" Version="0.1.12-preview" />
+  <PropertyGroup>
+    <Name>TCD-2024</Name>
+    <ProjectGuid>{AEFB4639-1A64-463F-9F0E-1F5E5C4F8D0E}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <ModelCollation>1033, CI</ModelCollation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Scripts" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <SqlCmdVariable Include="appPassword">
+      <Value>$(SqlCmdVar__1)</Value>
+      <DefaultValue>Dev3lopM3nt!2022#</DefaultValue>
+    </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\loginCreation.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\userCreation.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LocalDev.xml.publish.xml" />
+  </ItemGroup>
+  <Target Name="BeforeBuild">
+    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
+  </Target>
+</Project>

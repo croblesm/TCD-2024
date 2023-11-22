@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "0Dq9kKaJuVUGnRHLWwPEkLAqr5KjwRLQdiC6kzcwYBIVclckIUkHWulIxCieqY5uVXfbWKDWS3tg+GtT2ApYFg==",
+  "success": true,
+  "projectFilePath": "/workspaces/TCD-2024/sql/TCD-2024/TCD-2024.sqlproj",
+  "expectedPackageFiles": [
+    "/home/codespace/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.0/microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.netframework.referenceassemblies.net46/1.0.0/microsoft.netframework.referenceassemblies.net46.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

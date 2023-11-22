@@ -1,0 +1,9 @@
+/workspaces/TCD-2024/sql/TCD-2024/bin/Debug/TCD-2024.dacpac
+/workspaces/TCD-2024/sql/TCD-2024/bin/Debug/TCD-2024.dll
+/workspaces/TCD-2024/sql/TCD-2024/bin/Debug/TCD-2024.pdb
+/workspaces/TCD-2024/sql/TCD-2024/obj/Debug/Model.xml
+/workspaces/TCD-2024/sql/TCD-2024/obj/Debug/refactor.xml
+/workspaces/TCD-2024/sql/TCD-2024/obj/Debug/postdeploy.sql
+/workspaces/TCD-2024/sql/TCD-2024/obj/Debug/predeploy.sql
+/workspaces/TCD-2024/sql/TCD-2024/obj/Debug/TCD-2024.dll
+/workspaces/TCD-2024/sql/TCD-2024/obj/Debug/TCD-2024.pdb
