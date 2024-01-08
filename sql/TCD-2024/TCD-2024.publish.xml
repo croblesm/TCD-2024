@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <SqlCmdVariable Include="appPassword">
-      <Value>Dev3lopM3nt!2022#</Value>
+      <Value>Dev3lopM3nt!2024#</Value>
     </SqlCmdVariable>
   </ItemGroup>
 </Project>

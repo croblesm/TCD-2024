@@ -2,10 +2,9 @@
 CREATE PROCEDURE addAgendaItem
     @StartTime datetime,
     @EndTime datetime,
-    @Title nvarchar(200),
-    @Description nvarchar(max),
-    @SpeakerID int
+    @Room nvarchar(100),
+    @SessionID int
 AS
-INSERT INTO Agenda (StartTime, EndTime, Title, Description, SpeakerID)
-VALUES (@StartTime, @EndTime, @Title, @Description, @SpeakerID);
+INSERT INTO Agenda (StartTime, EndTime, Room, SessionID)
+VALUES (@StartTime, @EndTime, @Room, @SessionID);
 GO

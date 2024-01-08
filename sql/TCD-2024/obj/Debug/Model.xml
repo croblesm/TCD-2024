@@ -48,12 +48,12 @@
 		<Element Type="SqlForeignKeyConstraint">
 			<Relationship Name="Columns">
 				<Entry>
-					<References Name="[dbo].[Agenda].[SpeakerID]" />
+					<References Name="[dbo].[Sessions].[SpeakerID]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Agenda]" />
+					<References Name="[dbo].[Sessions]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForeignColumns">
@@ -68,13 +68,36 @@
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
 		</Element>
+		<Element Type="SqlForeignKeyConstraint">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[Agenda].[SessionID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Agenda]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Sessions].[SessionID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Sessions]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
 				<Entry>
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Speakers].[SpeakerID]" />
+								<References Name="[dbo].[Sessions].[SessionID]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -82,10 +105,10 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Speakers]" />
+					<References Name="[dbo].[Sessions]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -104,13 +127,51 @@
 					<References Name="[dbo].[Agenda]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Speakers].[SpeakerID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Speakers]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Sponsors].[SponsorID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Sponsors]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[addAgendaItem]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-INSERT INTO Agenda (StartTime, EndTime, Title, Description, SpeakerID)
-VALUES (@StartTime, @EndTime, @Title, @Description, @SpeakerID);]]></Value>
+INSERT INTO Agenda (StartTime, EndTime, Room, SessionID)
+VALUES (@StartTime, @EndTime, @Room, @SessionID);]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
@@ -124,13 +185,10 @@ VALUES (@StartTime, @EndTime, @Title, @Description, @SpeakerID);]]></Value>
 					<References Name="[dbo].[Agenda].[EndTime]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Agenda].[Title]" />
+					<References Name="[dbo].[Agenda].[Room]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Agenda].[Description]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Agenda].[SpeakerID]" />
+					<References Name="[dbo].[Agenda].[SessionID]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[addAgendaItem].[@StartTime]" />
@@ -139,13 +197,10 @@ VALUES (@StartTime, @EndTime, @Title, @Description, @SpeakerID);]]></Value>
 					<References Name="[dbo].[addAgendaItem].[@EndTime]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[addAgendaItem].[@Title]" />
+					<References Name="[dbo].[addAgendaItem].[@Room]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[addAgendaItem].[@Description]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[addAgendaItem].[@SpeakerID]" />
+					<References Name="[dbo].[addAgendaItem].[@SessionID]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -180,11 +235,11 @@ VALUES (@StartTime, @EndTime, @Title, @Description, @SpeakerID);]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[addAgendaItem].[@Title]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addAgendaItem].[@Room]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="200" />
+									<Property Name="Length" Value="100" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -196,23 +251,7 @@ VALUES (@StartTime, @EndTime, @Title, @Description, @SpeakerID);]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[addAgendaItem].[@Description]">
-						<Relationship Name="Type">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Property Name="IsMax" Value="True" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[addAgendaItem].[@SpeakerID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addAgendaItem].[@SessionID]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -234,10 +273,167 @@ VALUES (@StartTime, @EndTime, @Title, @Description, @SpeakerID);]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="49" />
-				<Property Name="Length" Value="343" />
+				<Property Name="Length" Value="281" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to add an agenda item&#xA;CREATE PROCEDURE addAgendaItem&#xA;    @StartTime datetime,&#xA;    @EndTime datetime,&#xA;    @Title nvarchar(200),&#xA;    @Description nvarchar(max),&#xA;    @SpeakerID int&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to add an agenda item&#xA;CREATE PROCEDURE addAgendaItem&#xA;    @StartTime datetime,&#xA;    @EndTime datetime,&#xA;    @Room nvarchar(100),&#xA;    @SessionID int&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[addSession]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+INSERT INTO Sessions (Title, Description, SessionType, Level, Duration, SpeakerID)
+VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerID);]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Sessions]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[Title]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[Description]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[SessionType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[Level]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[Duration]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[SpeakerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSession].[@Title]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSession].[@Description]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSession].[@SessionType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSession].[@Level]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSession].[@Duration]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSession].[@SpeakerID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSession].[@Title]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSession].[@Description]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSession].[@SessionType]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSession].[@Level]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSession].[@Duration]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSession].[@SpeakerID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="44" />
+				<Property Name="Length" Value="385" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to add a session&#xA;CREATE PROCEDURE addSession&#xA;    @Title nvarchar(max),&#xA;    @Description nvarchar(max),&#xA;    @SessionType nvarchar(50),&#xA;    @Level nvarchar(50),&#xA;    @Duration int,&#xA;    @SpeakerID int&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[addSpeaker]">
@@ -312,7 +508,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="50" />
+									<Property Name="Length" Value="100" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -328,7 +524,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="50" />
+									<Property Name="Length" Value="100" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -345,6 +541,22 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSpeaker].[@Email]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -376,7 +588,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="200" />
+									<Property Name="Length" Value="400" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -408,7 +620,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="200" />
+									<Property Name="Length" Value="400" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -424,7 +636,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="200" />
+									<Property Name="Length" Value="400" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -437,6 +649,121 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 				</Entry>
 				<Entry>
 					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSpeaker].[@Website]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="400" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="44" />
+				<Property Name="Length" Value="606" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to add a speaker&#xA;CREATE PROCEDURE addSpeaker&#xA;    @FirstName nvarchar(100),&#xA;    @LastName nvarchar(100),&#xA;    @Title nvarchar(200),&#xA;    @Email nvarchar(max),&#xA;    @Bio nvarchar(max),&#xA;    @PhotoUrl nvarchar(400),&#xA;    @TwitterHandle nvarchar(50),&#xA;    @LinkedInProfile nvarchar(400),&#xA;    @GitHubProfile nvarchar(400),&#xA;    @Website nvarchar(400)&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[addSponsor]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+INSERT INTO Sponsors (SponsorName, Description, LogoUrl, WebsiteUrl)
+VALUES (@SponsorName, @Description, @LogoUrl, @WebsiteUrl);]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Sponsors]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sponsors].[SponsorName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sponsors].[Description]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sponsors].[LogoUrl]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sponsors].[WebsiteUrl]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSponsor].[@SponsorName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSponsor].[@Description]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSponsor].[@LogoUrl]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[addSponsor].[@WebsiteUrl]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSponsor].[@SponsorName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSponsor].[@Description]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSponsor].[@LogoUrl]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSponsor].[@WebsiteUrl]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -459,10 +786,10 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="44" />
-				<Property Name="Length" Value="578" />
+				<Property Name="Length" Value="325" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to add a speaker&#xA;CREATE PROCEDURE addSpeaker&#xA;    @FirstName nvarchar(50),&#xA;    @LastName nvarchar(50),&#xA;    @Title nvarchar(200),&#xA;    @Bio nvarchar(max),&#xA;    @PhotoUrl nvarchar(200),&#xA;    @TwitterHandle nvarchar(50),&#xA;    @LinkedInProfile nvarchar(200),&#xA;    @GitHubProfile nvarchar(200),&#xA;    @Website nvarchar(200)&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to add a sponsor&#xA;CREATE PROCEDURE addSponsor&#xA;    @SponsorName nvarchar(100),&#xA;    @Description nvarchar(max),&#xA;    @LogoUrl nvarchar(200),&#xA;    @WebsiteUrl nvarchar(200)&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Agenda]">
@@ -483,7 +810,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="5" />
+						<AttachedAnnotation Disambiguator="6" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -517,11 +844,11 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[Title]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[Room]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="200" />
+									<Property Name="Length" Value="100" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -533,23 +860,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[Description]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Property Name="IsMax" Value="True" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[SpeakerID]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[SessionID]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -561,7 +872,7 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="3" />
+						<AttachedAnnotation Disambiguator="4" />
 					</Element>
 				</Entry>
 			</Relationship>
@@ -576,10 +887,10 @@ VALUES (@FirstName, @LastName, @Title, @Bio, @PhotoUrl, @TwitterHandle, @LinkedI
 				<Value><![CDATA[
 IF @AgendaID IS NULL
     SELECT a.*, s.* FROM Agenda a
-    INNER JOIN Speakers s ON a.SpeakerID = s.SpeakerID -- Get all speakers if no ID is provided
+    INNER JOIN Sessions s ON a.SessionID = s.SessionID -- Get all sessions if no ID is provided
 ELSE
     SELECT a.*, s.* FROM Agenda a
-    INNER JOIN Speakers s ON a.SpeakerID = s.SpeakerID
+    INNER JOIN Sessions s ON a.SessionID = s.SessionID
     WHERE a.AgendaID = @AgendaID; -- Get specific Agenda item if ID is provided]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -591,13 +902,13 @@ ELSE
 					<References Name="[dbo].[Agenda]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Speakers]" />
+					<References Name="[dbo].[Sessions]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Agenda].[SpeakerID]" />
+					<References Name="[dbo].[Agenda].[SessionID]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Speakers].[SpeakerID]" />
+					<References Name="[dbo].[Sessions].[SessionID]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Agenda].[AgendaID]" />
@@ -634,6 +945,59 @@ ELSE
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="-- Create stored procedure to get speakers&#xA;CREATE PROCEDURE getAgenda&#xA;    @AgendaID INT = NULL&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[getSessions]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+IF @SessionID IS NULL
+    SELECT * FROM Sessions; -- Get all sessions if no ID is provided
+ELSE
+    SELECT * FROM Sessions WHERE SessionID = @SessionID; -- Get specific session if ID is provided]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[getSessions].[@SessionID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[SessionID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[getSessions].[@SessionID]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[NULL]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="43" />
+				<Property Name="Length" Value="295" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to get sessions&#xA;CREATE PROCEDURE getSessions&#xA;    @SessionID int = NULL&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[getSpeakers]">
@@ -689,6 +1053,182 @@ ELSE
 				<Property Name="HeaderContents" Value="-- Create stored procedure to get speakers&#xA;CREATE PROCEDURE getSpeakers&#xA;    @SpeakerID int = NULL&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[getSponsors]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+IF @SponsorID IS NULL
+    SELECT * FROM Sponsors; -- Get all sponsors if no ID is provided
+ELSE
+    SELECT * FROM Sponsors WHERE SponsorID = @SponsorID; -- Get specific sponsor if ID is provided]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[getSponsors].[@SponsorID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sponsors]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sponsors].[SponsorID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[getSponsors].[@SponsorID]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[NULL]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="43" />
+				<Property Name="Length" Value="295" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to get sponsors&#xA;CREATE PROCEDURE getSponsors&#xA;    @SponsorID int = NULL&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[Sessions]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[SessionID]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="5" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[Title]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[Description]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[SessionType]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[Level]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[Duration]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[SpeakerID]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="3" />
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Speakers]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -707,7 +1247,7 @@ ELSE
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="4" />
+						<AttachedAnnotation Disambiguator="7" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -715,7 +1255,7 @@ ELSE
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="50" />
+									<Property Name="Length" Value="100" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -731,7 +1271,7 @@ ELSE
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="50" />
+									<Property Name="Length" Value="100" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -748,6 +1288,22 @@ ELSE
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Speakers].[Email]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -779,7 +1335,7 @@ ELSE
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="200" />
+									<Property Name="Length" Value="400" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -811,7 +1367,7 @@ ELSE
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="200" />
+									<Property Name="Length" Value="400" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -827,7 +1383,7 @@ ELSE
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="200" />
+									<Property Name="Length" Value="400" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -840,6 +1396,98 @@ ELSE
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Speakers].[Website]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="400" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[Sponsors]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sponsors].[SponsorID]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="8" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sponsors].[SponsorName]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="100" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sponsors].[Description]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sponsors].[LogoUrl]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sponsors].[WebsiteUrl]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">

@@ -4,9 +4,9 @@ CREATE PROCEDURE getAgenda
 AS
 IF @AgendaID IS NULL
     SELECT a.*, s.* FROM Agenda a
-    INNER JOIN Speakers s ON a.SpeakerID = s.SpeakerID -- Get all speakers if no ID is provided
+    INNER JOIN Sessions s ON a.SessionID = s.SessionID -- Get all sessions if no ID is provided
 ELSE
     SELECT a.*, s.* FROM Agenda a
-    INNER JOIN Speakers s ON a.SpeakerID = s.SpeakerID
+    INNER JOIN Sessions s ON a.SessionID = s.SessionID
     WHERE a.AgendaID = @AgendaID; -- Get specific Agenda item if ID is provided
 GO

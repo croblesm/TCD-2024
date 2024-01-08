@@ -13,21 +13,23 @@
     <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <SqlCmdVariable Include="appPassword">
-      <Value>$(SqlCmdVar__1)</Value>
-      <DefaultValue>Dev3lopM3nt!2022#</DefaultValue>
-    </SqlCmdVariable>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Scripts\agendaDummyData.sql" />
-    <None Include="Scripts\speakersDummyData.sql" />
-    <None Include="TCD-2024.publish.xml.publish.xml" />
+    <None Include="Scripts\addSpeakersData.sql" />
+    <None Include="Scripts\addSessionsData.sql" />
+    <None Include="Scripts\addAgendaData.sql" />
+    <None Include="Scripts\addSponsorsData.sql" />
+    <None Include="TCD-2024.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Scripts\loginCreation.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\userCreation.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <SqlCmdVariable Include="appPassword">
+      <Value>$(SqlCmdVar__1)</Value>
+      <DefaultValue>Dev3lopM3nt!2024#</DefaultValue>
+    </SqlCmdVariable>
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
