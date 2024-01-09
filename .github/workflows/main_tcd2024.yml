@@ -38,7 +38,7 @@ jobs:
           connection-string: ${{ secrets.AZURE_SQL }}
           path: 'sql/TCD-2024/TCD-2024.sqlproj'
           action: 'publish'
-          build-arguments: '-c Release'                 # Optional build options passed to dotnet build
+          build-arguments: '-c Release /p:SqlCmdVariables="SqlCmdVar__2=Production"' # Add the SQLCMD variable here
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1

@@ -24,6 +24,7 @@
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable">
 			<Metadata Name="appPassword" Value="" />
+			<Metadata Name="Environment" Value="" />
 		</CustomData>
 	</Header>
 	<Model>

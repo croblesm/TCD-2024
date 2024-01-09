@@ -30,6 +30,10 @@
       <Value>$(SqlCmdVar__1)</Value>
       <DefaultValue>Dev3lopM3nt!2024#</DefaultValue>
     </SqlCmdVariable>
+    <SqlCmdVariable Include="Environment">
+      <Value>$(SqlCmdVar__2)</Value>
+      <DefaultValue>Production</DefaultValue>
+    </SqlCmdVariable>
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
