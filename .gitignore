@@ -1,7 +1,5 @@
-Certainly! A typical `.gitignore` file for C# projects would exclude compiled binaries, temporary files, and other files generated during the build process. Here's a basic example:
-
-```gitignore
 # Visual Studio Code
+.vscode/
 
 # Rider
 .idea/
