@@ -32,6 +32,14 @@ jobs:
           dotnet build --configuration Release --output ./output
           popd
 
+      - name: 'Database Deployment'
+        uses: azure/sql-action@v2.2
+        with:
+          connection-string: ${{ secrets.AZURE_SQL }}
+          path: 'sql/TCD-2024/TCD-2024.sqlproj'
+          action: 'publish'
+          build-arguments: '-c Release'                 # Optional build options passed to dotnet build
+
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
