@@ -10,10 +10,10 @@ using TCD2024.Speakers;
 
 namespace TCD2024.Sessions
 {
-    public static class GetSessions
+    public static class getSessions
     {
         // Visit https://aka.ms/sqlbindingsinput to learn how to use this input binding
-    [FunctionName("GetSessions")]
+    [FunctionName("getSessions")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "sessions/{id?}")] 
             HttpRequest req,

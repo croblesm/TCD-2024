@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using TCD2024.Speakers;
+using TCD2024.Sessions;
 
 namespace TCD2024.Agenda
 {
@@ -18,7 +19,7 @@ namespace TCD2024.Agenda
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "agenda/{id?}")]
             HttpRequest req,
             [Sql(commandText: "getAgenda", commandType: System.Data.CommandType.StoredProcedure, 
-                parameters: "@AgendaID={id}", connectionStringSetting: "SqlConnectionString")] 
+                parameters: "@AgendaId={id}", connectionStringSetting: "SqlConnectionString")] 
                 IEnumerable<dynamic> results,
             ILogger log)
         {
@@ -34,24 +35,19 @@ namespace TCD2024.Agenda
             {
                 var agenda = new Agenda
                 {
-                    AgendaId = result.AgendaID,
+                    AgendaId = result.AgendaId,
                     StartTime = result.StartTime,
                     EndTime = result.EndTime,
-                    Title = result.Title,
-                    Description = result.Description,
-                    SpeakerId = result.SpeakerId,
-                    Speaker = new Speaker
+                    Room = result.Room,
+                    SessionId = result.SessionId,
+                    Session = new Session
                     {
-                        SpeakerID = result.SpeakerID,
-                        FirstName = result.FirstName,
-                        LastName = result.LastName,
                         Title = result.Title,
-                        Bio = result.Bio,
-                        PhotoUrl = result.PhotoUrl,
-                        TwitterHandle = result.TwitterHandle,
-                        LinkedInProfile = result.LinkedInProfile,
-                        GitHubProfile = result.GitHubProfile,
-                        Website = result.Website
+                        Description = result.Description,
+                        SessionType = result.SessionType,
+                        Level = result.Level,
+                        Duration = result.Duration,
+                        SpeakerId = result.SpeakerId
                     }
                 };
 
@@ -64,7 +60,7 @@ namespace TCD2024.Agenda
                 var agenda = agendas.FirstOrDefault();
                 if (agenda != null)
                 {
-                    log.LogInformation($"Found 1 speaker with ID {agenda.AgendaId}.");
+                    log.LogInformation($"Found 1 session in Agenda with ID {agenda.AgendaId}.");
                     return new OkObjectResult(agenda);
                 }
             }
@@ -80,24 +76,18 @@ namespace TCD2024.Agenda
         public int? AgendaId { get; set; }
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
+        public string Room { get; set; }
+        public int SessionId { get; set; }
+        public Session Session { get; set; }
+    }
+    public class Session
+    {
         public string Title { get; set; }
         public string Description { get; set; }
-        public int? SpeakerId { get; set; }
-        public Speaker Speaker { get; set; }
-    }
-    public class Speaker
-    {
-        public int SpeakerID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Title { get; set; }
-        public string Bio { get; set; }
-        public string PhotoUrl { get; set; }
-        public string TwitterHandle { get; set; }
-        public string LinkedInProfile { get; set; }
-        public string GitHubProfile { get; set; }
-        public string Website { get; set; }
-        //public virtual ICollection<Agenda> Agendas { get; set; }
+        public string SessionType { get; set; }
+        public string Level { get; set; }
+        public int Duration { get; set; }
+        public int SpeakerId { get; set; }
         public List<Agenda> Agendas { get; set; }
     }
 }
