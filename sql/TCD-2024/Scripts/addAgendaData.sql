@@ -1,6 +1,6 @@
 -- Post-Deployment Script
 -- Add agenda items
-INSERT INTO Agenda (StartTime, EndTime, Room, SessionID)
+INSERT INTO Agenda (StartTime, EndTime, Room, SessionId)
 VALUES 
 ('2022-01-01T09:00:00', '2022-01-01T10:00:00', 'Room 101', 1),
 ('2022-01-01T11:00:00', '2022-01-01T12:30:00', 'Room 102', 2),

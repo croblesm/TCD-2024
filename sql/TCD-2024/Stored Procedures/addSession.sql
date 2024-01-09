@@ -5,8 +5,8 @@ CREATE PROCEDURE addSession
     @SessionType nvarchar(50),
     @Level nvarchar(50),
     @Duration int,
-    @SpeakerID int
+    @SpeakerId int
 AS
-INSERT INTO Sessions (Title, Description, SessionType, Level, Duration, SpeakerID)
-VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerID);
+INSERT INTO Sessions (Title, Description, SessionType, Level, Duration, SpeakerId)
+VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerId);
 GO

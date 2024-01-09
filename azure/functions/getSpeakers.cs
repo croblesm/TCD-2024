@@ -16,7 +16,7 @@ namespace TCD2024.Speakers
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "speakers/{id?}")]
             HttpRequest req,
             [Sql(commandText: "getSpeakers", commandType: System.Data.CommandType.StoredProcedure, 
-                parameters: "@SpeakerID={id}", connectionStringSetting: "SqlConnectionString")] 
+                parameters: "@SpeakerId={id}", connectionStringSetting: "SqlConnectionString")] 
                 IEnumerable<Speaker> speakers,
             ILogger log)
         {
@@ -35,7 +35,7 @@ namespace TCD2024.Speakers
                 var speaker = speakers.FirstOrDefault();
                 if (speaker != null)
                 {
-                    log.LogInformation($"Found 1 speaker with ID {speaker.SpeakerID}.");
+                    log.LogInformation($"Found 1 speaker with ID {speaker.SpeakerId}.");
                     return new OkObjectResult(speaker);
                 }
             }
@@ -49,7 +49,7 @@ namespace TCD2024.Speakers
 
     public class Speaker
     {
-        public int SpeakerID { get; set; }
+        public int SpeakerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Title { get; set; }

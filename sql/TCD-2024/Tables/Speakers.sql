@@ -1,6 +1,6 @@
 -- Create the Speakers table
 CREATE TABLE Speakers (
-    SpeakerID int IDENTITY(1,1) PRIMARY KEY,
+    SpeakerId int IDENTITY(1,1) PRIMARY KEY,
     FirstName nvarchar(100),
     LastName nvarchar(100),
     Title nvarchar(200),

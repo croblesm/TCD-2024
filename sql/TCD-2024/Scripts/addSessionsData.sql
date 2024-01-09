@@ -1,6 +1,6 @@
 -- Post-Deployment Script
 -- Add sessions
-INSERT INTO Sessions (Title, Description, SessionType, Level, Duration, SpeakerID)
+INSERT INTO Sessions (Title, Description, SessionType, Level, Duration, SpeakerId)
 VALUES 
 ('Software Engineering 101', 'An introduction to software engineering...', 'Workshop', 'Beginner', 60, 1),
 ('Data Science for Dummies', 'A beginner-friendly guide to data science...', 'Lecture', 'Beginner', 90, 2),

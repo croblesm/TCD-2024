@@ -3,8 +3,8 @@ CREATE PROCEDURE addAgendaItem
     @StartTime datetime,
     @EndTime datetime,
     @Room nvarchar(100),
-    @SessionID int
+    @SessionId int
 AS
-INSERT INTO Agenda (StartTime, EndTime, Room, SessionID)
-VALUES (@StartTime, @EndTime, @Room, @SessionID);
+INSERT INTO Agenda (StartTime, EndTime, Room, SessionId)
+VALUES (@StartTime, @EndTime, @Room, @SessionId);
 GO

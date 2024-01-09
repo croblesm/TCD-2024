@@ -18,7 +18,7 @@ namespace TCD2024.Sessions
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "sessions/{id?}")] 
             HttpRequest req,
             [Sql(commandText: "getSessions", commandType: System.Data.CommandType.StoredProcedure, 
-                parameters: "@SessionID={id}", connectionStringSetting: "SqlConnectionString")] 
+                parameters: "@SessionId={id}", connectionStringSetting: "SqlConnectionString")] 
                 IEnumerable<dynamic> results,
             ILogger log)
         {
@@ -34,7 +34,7 @@ namespace TCD2024.Sessions
             {
                 var Session = new Session
                 {
-                    SessionId = result.SessionID,
+                    SessionId = result.SessionId,
                     Title = result.Title,
                     Description = result.Description,
                     SessionType = result.SessionType,
@@ -43,7 +43,6 @@ namespace TCD2024.Sessions
                     SpeakerId = result.SpeakerId,
                     Speaker = new Speaker
                     {
-                        SpeakerID = result.SpeakerID,
                         FirstName = result.FirstName,
                         LastName = result.LastName,
                         Title = result.Title,
@@ -84,12 +83,11 @@ namespace TCD2024.Sessions
         public string SessionType { get; set; }
         public string Level { get; set; }
         public int Duration { get; set; }
-        public int? SpeakerId { get; set; }
+        public int SpeakerId { get; set; }
         public Speaker Speaker { get; set; }
     }
     public class Speaker
     {
-        public int SpeakerID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Title { get; set; }
@@ -100,9 +98,7 @@ namespace TCD2024.Sessions
         public string LinkedInProfile { get; set; }
         public string GitHubProfile { get; set; }
         public string Website { get; set; }
-        //public virtual ICollection<Agenda> Agendas { get; set; }
         public List<Session> Sessions { get; set; }
     }
-
 
 }

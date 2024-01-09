@@ -19,7 +19,7 @@ namespace TCD2024.AgendaV2
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "agendaV2/{id?}")]
             HttpRequest req,
             [Sql(commandText: "getAgenda", commandType: System.Data.CommandType.StoredProcedure, 
-                parameters: "@AgendaID={id}", connectionStringSetting: "SqlConnectionString")] 
+                parameters: "@AgendaId={id}", connectionStringSetting: "SqlConnectionString")] 
                 IEnumerable<dynamic> results,
             ILogger log)
         {
@@ -42,7 +42,6 @@ namespace TCD2024.AgendaV2
                     SessionId = result.SessionId,
                     Session = new Session
                     {
-                        SessionId = result.SessionId,
                         Title = result.Title,
                         Description = result.Description,
                         SessionType = result.SessionType,
@@ -78,12 +77,11 @@ namespace TCD2024.AgendaV2
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
         public string Room { get; set; }
-        public int? SessionId { get; set; }
+        public int SessionId { get; set; }
         public Session Session { get; set; }
     }
     public class Session
     {
-        public int SessionId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string SessionType { get; set; }

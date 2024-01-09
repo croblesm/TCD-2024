@@ -1,9 +1,9 @@
 -- Create stored procedure to get sponsors
 CREATE PROCEDURE getSponsors
-    @SponsorID int = NULL
+    @SponsorId int = NULL
 AS
-IF @SponsorID IS NULL
+IF @SponsorId IS NULL
     SELECT * FROM Sponsors; -- Get all sponsors if no ID is provided
 ELSE
-    SELECT * FROM Sponsors WHERE SponsorID = @SponsorID; -- Get specific sponsor if ID is provided
+    SELECT * FROM Sponsors WHERE SponsorId = @SponsorId; -- Get specific sponsor if ID is provided
 GO

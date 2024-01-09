@@ -48,7 +48,7 @@
 		<Element Type="SqlForeignKeyConstraint">
 			<Relationship Name="Columns">
 				<Entry>
-					<References Name="[dbo].[Sessions].[SpeakerID]" />
+					<References Name="[dbo].[Sessions].[SpeakerId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="DefiningTable">
@@ -58,7 +58,7 @@
 			</Relationship>
 			<Relationship Name="ForeignColumns">
 				<Entry>
-					<References Name="[dbo].[Speakers].[SpeakerID]" />
+					<References Name="[dbo].[Speakers].[SpeakerId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForeignTable">
@@ -71,7 +71,7 @@
 		<Element Type="SqlForeignKeyConstraint">
 			<Relationship Name="Columns">
 				<Entry>
-					<References Name="[dbo].[Agenda].[SessionID]" />
+					<References Name="[dbo].[Agenda].[SessionId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="DefiningTable">
@@ -81,7 +81,7 @@
 			</Relationship>
 			<Relationship Name="ForeignColumns">
 				<Entry>
-					<References Name="[dbo].[Sessions].[SessionID]" />
+					<References Name="[dbo].[Sessions].[SessionId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForeignTable">
@@ -97,7 +97,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Sessions].[SessionID]" />
+								<References Name="[dbo].[Sessions].[SessionId]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -116,7 +116,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Agenda].[AgendaID]" />
+								<References Name="[dbo].[Agenda].[AgendaId]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -135,7 +135,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Speakers].[SpeakerID]" />
+								<References Name="[dbo].[Speakers].[SpeakerId]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -154,7 +154,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Sponsors].[SponsorID]" />
+								<References Name="[dbo].[Sponsors].[SponsorId]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -170,8 +170,8 @@
 		<Element Type="SqlProcedure" Name="[dbo].[addAgendaItem]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-INSERT INTO Agenda (StartTime, EndTime, Room, SessionID)
-VALUES (@StartTime, @EndTime, @Room, @SessionID);]]></Value>
+INSERT INTO Agenda (StartTime, EndTime, Room, SessionId)
+VALUES (@StartTime, @EndTime, @Room, @SessionId);]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
@@ -188,7 +188,7 @@ VALUES (@StartTime, @EndTime, @Room, @SessionID);]]></Value>
 					<References Name="[dbo].[Agenda].[Room]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Agenda].[SessionID]" />
+					<References Name="[dbo].[Agenda].[SessionId]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[addAgendaItem].[@StartTime]" />
@@ -200,7 +200,7 @@ VALUES (@StartTime, @EndTime, @Room, @SessionID);]]></Value>
 					<References Name="[dbo].[addAgendaItem].[@Room]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[addAgendaItem].[@SessionID]" />
+					<References Name="[dbo].[addAgendaItem].[@SessionId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -251,7 +251,7 @@ VALUES (@StartTime, @EndTime, @Room, @SessionID);]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[addAgendaItem].[@SessionID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addAgendaItem].[@SessionId]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -276,14 +276,14 @@ VALUES (@StartTime, @EndTime, @Room, @SessionID);]]></Value>
 				<Property Name="Length" Value="281" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to add an agenda item&#xA;CREATE PROCEDURE addAgendaItem&#xA;    @StartTime datetime,&#xA;    @EndTime datetime,&#xA;    @Room nvarchar(100),&#xA;    @SessionID int&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to add an agenda item&#xA;CREATE PROCEDURE addAgendaItem&#xA;    @StartTime datetime,&#xA;    @EndTime datetime,&#xA;    @Room nvarchar(100),&#xA;    @SessionId int&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[addSession]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-INSERT INTO Sessions (Title, Description, SessionType, Level, Duration, SpeakerID)
-VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerID);]]></Value>
+INSERT INTO Sessions (Title, Description, SessionType, Level, Duration, SpeakerId)
+VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerId);]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
@@ -306,7 +306,7 @@ VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerID);]]></
 					<References Name="[dbo].[Sessions].[Duration]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Sessions].[SpeakerID]" />
+					<References Name="[dbo].[Sessions].[SpeakerId]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[addSession].[@Title]" />
@@ -324,7 +324,7 @@ VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerID);]]></
 					<References Name="[dbo].[addSession].[@Duration]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[addSession].[@SpeakerID]" />
+					<References Name="[dbo].[addSession].[@SpeakerId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -408,7 +408,7 @@ VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerID);]]></
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSession].[@SpeakerID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[addSession].[@SpeakerId]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -433,7 +433,7 @@ VALUES (@Title, @Description, @SessionType, @Level, @Duration, @SpeakerID);]]></
 				<Property Name="Length" Value="385" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to add a session&#xA;CREATE PROCEDURE addSession&#xA;    @Title nvarchar(max),&#xA;    @Description nvarchar(max),&#xA;    @SessionType nvarchar(50),&#xA;    @Level nvarchar(50),&#xA;    @Duration int,&#xA;    @SpeakerID int&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to add a session&#xA;CREATE PROCEDURE addSession&#xA;    @Title nvarchar(max),&#xA;    @Description nvarchar(max),&#xA;    @SessionType nvarchar(50),&#xA;    @Level nvarchar(50),&#xA;    @Duration int,&#xA;    @SpeakerId int&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[addSpeaker]">
@@ -796,7 +796,7 @@ VALUES (@SponsorName, @Description, @LogoUrl, @WebsiteUrl);]]></Value>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[AgendaID]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[AgendaId]">
 						<Property Name="IsNullable" Value="False" />
 						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
@@ -860,7 +860,7 @@ VALUES (@SponsorName, @Description, @LogoUrl, @WebsiteUrl);]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[SessionID]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Agenda].[SessionId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -885,18 +885,22 @@ VALUES (@SponsorName, @Description, @LogoUrl, @WebsiteUrl);]]></Value>
 		<Element Type="SqlProcedure" Name="[dbo].[getAgenda]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-IF @AgendaID IS NULL
-    SELECT a.*, s.* FROM Agenda a
-    INNER JOIN Sessions s ON a.SessionID = s.SessionID -- Get all sessions if no ID is provided
+IF @AgendaId IS NULL
+    SELECT 
+        a.*, 
+        s.Title, s.Description, s.SessionType, s.Level, s.Duration, s.SpeakerId FROM Agenda a
+    INNER JOIN Sessions s ON a.SessionId = s.SessionId -- Get all sessions if no ID is provided
 ELSE
-    SELECT a.*, s.* FROM Agenda a
-    INNER JOIN Sessions s ON a.SessionID = s.SessionID
-    WHERE a.AgendaID = @AgendaID; -- Get specific Agenda item if ID is provided]]></Value>
+    SELECT 
+        a.*, 
+        s.Title, s.Description, s.SessionType, s.Level, s.Duration, s.SpeakerId FROM Agenda a
+    INNER JOIN Sessions s ON a.SessionId = s.SessionId
+    WHERE a.AgendaId = @AgendaId; -- Get specific Agenda item if ID is provided]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
-					<References Name="[dbo].[getAgenda].[@AgendaID]" />
+					<References Name="[dbo].[getAgenda].[@AgendaId]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Agenda]" />
@@ -905,18 +909,36 @@ ELSE
 					<References Name="[dbo].[Sessions]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Agenda].[SessionID]" />
+					<References Name="[dbo].[Agenda].[SessionId]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Sessions].[SessionID]" />
+					<References Name="[dbo].[Sessions].[SessionId]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Agenda].[AgendaID]" />
+					<References Name="[dbo].[Sessions].[Title]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[Description]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[SessionType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[Level]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[Duration]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[SpeakerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Agenda].[AgendaId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[getAgenda].[@AgendaID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[getAgenda].[@AgendaId]">
 						<Property Name="DefaultExpressionScript">
 							<Value><![CDATA[NULL]]></Value>
 						</Property>
@@ -941,35 +963,81 @@ ELSE
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="43" />
-				<Property Name="Length" Value="422" />
+				<Property Name="Length" Value="594" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to get speakers&#xA;CREATE PROCEDURE getAgenda&#xA;    @AgendaID INT = NULL&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to get speakers&#xA;CREATE PROCEDURE getAgenda&#xA;    @AgendaId INT = NULL&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[getSessions]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-IF @SessionID IS NULL
-    SELECT * FROM Sessions; -- Get all sessions if no ID is provided
+IF @SessionId IS NULL
+    SELECT 
+        a.*, 
+        s.FirstName, s.LastName, s.Title, s.Email, s.Bio, s.PhotoUrl, s.TwitterHandle, s.LinkedInProfile, s.GitHubProfile, s.Website FROM Sessions a
+    INNER JOIN Speakers s ON a.SpeakerId = s.SpeakerId -- Get all sessions if no ID is provided
 ELSE
-    SELECT * FROM Sessions WHERE SessionID = @SessionID; -- Get specific session if ID is provided]]></Value>
+    SELECT
+        a.*, 
+        s.FirstName, s.LastName, s.Title, s.Email, s.Bio, s.PhotoUrl, s.TwitterHandle, s.LinkedInProfile, s.GitHubProfile, s.Website FROM Sessions a
+    INNER JOIN Speakers s ON a.SpeakerId = s.SpeakerId
+    WHERE a.SessionId = @SessionId; -- Get specific session if ID is provided]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
-					<References Name="[dbo].[getSessions].[@SessionID]" />
+					<References Name="[dbo].[getSessions].[@SessionId]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Sessions]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Sessions].[SessionID]" />
+					<References Name="[dbo].[Speakers]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[SpeakerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[SpeakerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[Title]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[Email]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[Bio]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[PhotoUrl]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[TwitterHandle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[LinkedInProfile]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[GitHubProfile]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[Website]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[SessionId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[getSessions].[@SessionID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[getSessions].[@SessionId]">
 						<Property Name="DefaultExpressionScript">
 							<Value><![CDATA[NULL]]></Value>
 						</Property>
@@ -994,35 +1062,35 @@ ELSE
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="43" />
-				<Property Name="Length" Value="295" />
+				<Property Name="Length" Value="705" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to get sessions&#xA;CREATE PROCEDURE getSessions&#xA;    @SessionID int = NULL&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to get sessions&#xA;CREATE PROCEDURE getSessions&#xA;    @SessionId int = NULL&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[getSpeakers]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-IF @SpeakerID IS NULL
+IF @SpeakerId IS NULL
     SELECT * FROM Speakers; -- Get all speakers if no ID is provided
 ELSE
-    SELECT * FROM Speakers WHERE SpeakerID = @SpeakerID; -- Get specific speaker if ID is provided]]></Value>
+    SELECT * FROM Speakers WHERE SpeakerId = @SpeakerId; -- Get specific speaker if ID is provided]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
-					<References Name="[dbo].[getSpeakers].[@SpeakerID]" />
+					<References Name="[dbo].[getSpeakers].[@SpeakerId]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Speakers]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Speakers].[SpeakerID]" />
+					<References Name="[dbo].[Speakers].[SpeakerId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[getSpeakers].[@SpeakerID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[getSpeakers].[@SpeakerId]">
 						<Property Name="DefaultExpressionScript">
 							<Value><![CDATA[NULL]]></Value>
 						</Property>
@@ -1050,32 +1118,32 @@ ELSE
 				<Property Name="Length" Value="295" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to get speakers&#xA;CREATE PROCEDURE getSpeakers&#xA;    @SpeakerID int = NULL&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to get speakers&#xA;CREATE PROCEDURE getSpeakers&#xA;    @SpeakerId int = NULL&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[getSponsors]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-IF @SponsorID IS NULL
+IF @SponsorId IS NULL
     SELECT * FROM Sponsors; -- Get all sponsors if no ID is provided
 ELSE
-    SELECT * FROM Sponsors WHERE SponsorID = @SponsorID; -- Get specific sponsor if ID is provided]]></Value>
+    SELECT * FROM Sponsors WHERE SponsorId = @SponsorId; -- Get specific sponsor if ID is provided]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
-					<References Name="[dbo].[getSponsors].[@SponsorID]" />
+					<References Name="[dbo].[getSponsors].[@SponsorId]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Sponsors]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Sponsors].[SponsorID]" />
+					<References Name="[dbo].[Sponsors].[SponsorId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[getSponsors].[@SponsorID]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[getSponsors].[@SponsorId]">
 						<Property Name="DefaultExpressionScript">
 							<Value><![CDATA[NULL]]></Value>
 						</Property>
@@ -1103,14 +1171,14 @@ ELSE
 				<Property Name="Length" Value="295" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- Create stored procedure to get sponsors&#xA;CREATE PROCEDURE getSponsors&#xA;    @SponsorID int = NULL&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- Create stored procedure to get sponsors&#xA;CREATE PROCEDURE getSponsors&#xA;    @SponsorId int = NULL&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Sessions]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[SessionID]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[SessionId]">
 						<Property Name="IsNullable" Value="False" />
 						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
@@ -1207,7 +1275,7 @@ ELSE
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[SpeakerID]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sessions].[SpeakerId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -1233,7 +1301,7 @@ ELSE
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Speakers].[SpeakerID]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Speakers].[SpeakerId]">
 						<Property Name="IsNullable" Value="False" />
 						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">
@@ -1421,7 +1489,7 @@ ELSE
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[Sponsors].[SponsorID]">
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Sponsors].[SponsorId]">
 						<Property Name="IsNullable" Value="False" />
 						<Property Name="IsIdentity" Value="True" />
 						<Relationship Name="TypeSpecifier">

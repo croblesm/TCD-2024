@@ -16,7 +16,7 @@ namespace TCD2024.Sponsors
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "sponsors/{id?}")]
             HttpRequest req,
             [Sql(commandText: "getSponsors", commandType: System.Data.CommandType.StoredProcedure, 
-                parameters: "@SponsorID={id}", connectionStringSetting: "SqlConnectionString")] 
+                parameters: "@SponsorId={id}", connectionStringSetting: "SqlConnectionString")] 
                 IEnumerable<Sponsor> sponsors,
             ILogger log)
         {
@@ -35,7 +35,7 @@ namespace TCD2024.Sponsors
                 var sponsor = sponsors.FirstOrDefault();
                 if (sponsor != null)
                 {
-                    log.LogInformation($"Found 1 sponsor with ID {sponsor.SponsorID}.");
+                    log.LogInformation($"Found 1 sponsor with ID {sponsor.SponsorId}.");
                     return new OkObjectResult(sponsor);
                 }
             }
@@ -49,7 +49,7 @@ namespace TCD2024.Sponsors
 
     public class Sponsor
     {
-        public int SponsorID { get; set; }
+        public int SponsorId { get; set; }
         public string SponsorName { get; set; }
         public string Description { get; set; }
         public string LogoUrl { get; set; }

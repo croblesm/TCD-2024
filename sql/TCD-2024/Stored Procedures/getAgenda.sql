@@ -1,12 +1,16 @@
 -- Create stored procedure to get speakers
 CREATE PROCEDURE getAgenda
-    @AgendaID INT = NULL
+    @AgendaId INT = NULL
 AS
-IF @AgendaID IS NULL
-    SELECT a.*, s.* FROM Agenda a
-    INNER JOIN Sessions s ON a.SessionID = s.SessionID -- Get all sessions if no ID is provided
+IF @AgendaId IS NULL
+    SELECT 
+        a.*, 
+        s.Title, s.Description, s.SessionType, s.Level, s.Duration, s.SpeakerId FROM Agenda a
+    INNER JOIN Sessions s ON a.SessionId = s.SessionId -- Get all sessions if no ID is provided
 ELSE
-    SELECT a.*, s.* FROM Agenda a
-    INNER JOIN Sessions s ON a.SessionID = s.SessionID
-    WHERE a.AgendaID = @AgendaID; -- Get specific Agenda item if ID is provided
+    SELECT 
+        a.*, 
+        s.Title, s.Description, s.SessionType, s.Level, s.Duration, s.SpeakerId FROM Agenda a
+    INNER JOIN Sessions s ON a.SessionId = s.SessionId
+    WHERE a.AgendaId = @AgendaId; -- Get specific Agenda item if ID is provided
 GO
