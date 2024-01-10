@@ -18,6 +18,7 @@
     <None Include="Scripts\addAgendaData.sql" />
     <None Include="Scripts\addSponsorsData.sql" />
     <None Include="Scripts\patchData-1.sql" />
+    <None Include="Scripts\patchData-2.sql" />
     <None Include="TCD-2024.publish.xml" />
   </ItemGroup>
   <ItemGroup>
