@@ -22,6 +22,10 @@ UPDATE Speakers SET Bio = 'Docente Universitario, Ingeniero de Software en con 8
 WHERE SpeakerId = 4;
 GO
 
+UPDATE Speakers SET PhotoUrl = 'https://sessionize.com/image/9f3d-0o0o0-4a-b95f-4a3c-adc8-3a9455596c9f.adf313ee-e664-4761-943c-760960d16ebc.png'
+WHERE SpeakerId = 4;
+GO
+
 UPDATE Speakers SET Bio = 'Ha trabajado en el ciclo de construcción de software por más de 6 años en diversas industrias. Cuenta con experiencia en el desarrollo de aplicaciones web en el framework .NET, DotNet, y aplicaciones móviles con Xamarin Forms, desde la construcción hasta el proceso de distribución y monitoreo. Además, ha desempeñado el cargo de Jefe de Sistemas de Retail y posee amplios conocimientos en la integración con SAP y su tecnología DI API, B1IF, SAP SDK. Actualmente trabaja como Ingeniero DevOps, gestionando la integración de nuevos procesos, herramientas, etc., entre las etapas del desarrollo de software y su automatización. Siempre está explorando nuevas tecnologías, participando en proyectos, y colaborando compartiendo información sobre los diversos servicios tecnológicos y la seguridad informática.'
 WHERE SpeakerId = 5;
 GO
@@ -30,7 +34,7 @@ UPDATE Speakers SET Bio = 'Cazador de Talento especializado en la industria tecn
 WHERE SpeakerId = 6;
 GO
 
-UPDATE Speakers SET PhotoUrl = 'https://sessionize.com/image/49c2-0o0o0-3pMkQCtbgZkDCYMVyBhcic.jpg?download=amada-davila-hernandez.jpg'
+UPDATE Speakers SET PhotoUrl = 'https://sessionize.com/image/49c2-0o0o0-3pMkQCtbgZkDCYMVyBhcic.jpg'
 WHERE SpeakerId = 6;
 GO
 
@@ -59,10 +63,14 @@ WHERE SpeakerId = 12;
 GO
 
 UPDATE Speakers SET PhotoUrl = 'https://sessionize.com/image/24fb-0o0o0-EBQ85dVUmbGBnhKgWjJ29q.jpg' 
-WHERE SpeakerId = 1;
+WHERE SpeakerId = 12;
 GO
 
 UPDATE Speakers SET Bio = 'Somos una comunidad liderada por un grupo de guatemaltecos fundada en el año 2018, con la finalidad de compartir conocimiento en el campo de tecnología sin fines de lucro. Nuestra misión es a apoyar las necesidades tecnológicas de Guatemala y LATAM por medio de meetups (en persona y virtuales) en distintas ramas de tecnología como DevOps, Cloud Computing, Software Development y Data & AI.'
+WHERE SpeakerId = 13;
+GO
+
+UPDATE Speakers SET PhotoUrl = 'https://sessionize.com/image/b41a-1140o400o3-XgLoefC4kNqJZphJ1ivQR2.png'
 WHERE SpeakerId = 13;
 GO
 
