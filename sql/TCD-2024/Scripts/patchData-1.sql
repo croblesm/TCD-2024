@@ -70,7 +70,25 @@ UPDATE Speakers SET Bio = 'Somos una comunidad liderada por un grupo de guatemal
 WHERE SpeakerId = 13;
 GO
 
+UPDATE Speakers SET FirstName = 'Tech'
+WHERE SpeakerId = 13;
+GO
+
+UPDATE Speakers SET LastName = 'Community'
+WHERE SpeakerId = 13;
+
+UPDATE Speakers SET Title = 'Comunidad'
+WHERE SpeakerId = 13;
+
 UPDATE Speakers SET PhotoUrl = 'https://sessionize.com/image/b41a-1140o400o3-XgLoefC4kNqJZphJ1ivQR2.png'
+WHERE SpeakerId = 13;
+GO
+
+UPDATE Speakers SET Website = 'https://linktr.ee/techcommunity'
+WHERE SpeakerId = 13;
+GO
+
+UPDATE Speakers SET GitHubProfile = 'https://github.com/tech-community'
 WHERE SpeakerId = 13;
 GO
 
