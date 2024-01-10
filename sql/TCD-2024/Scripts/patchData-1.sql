@@ -10,6 +10,14 @@ UPDATE Speakers SET PhotoUrl = 'https://sessionize.com/image/4f7b-0o0o0-SJfqkF3K
 WHERE SpeakerId = 1;
 GO
 
+UPDATE Speakers SET GitHubProfile = null
+WHERE SpeakerId = 1;
+GO
+
+UPDATE Speakers SET LinkedInProfile = 'https://linkedin.com/in/francisco-ardon'
+WHERE SpeakerId = 1;
+GO
+
 UPDATE Speakers SET Bio = 'Analista Programador con más de 3 años de experiencia en tecnologías de vanguardia como React, Angular, Next.js, Node.js, Spring Boot, y plataformas de nube como GCP y AWS. Graduado en Ingeniería en Sistemas, he liderado el equipo de front-end en Fundación Génesis Empresarial, desarrollando soluciones eficaces para clientes externos. Mi trabajo se ha centrado en proyectos orientados al público, lo que ha enriquecido mi habilidad para entregar aplicaciones web que no solo son técnicamente sólidas, sino también orientadas al usuario final.' 
 WHERE SpeakerId = 2;
 GO
