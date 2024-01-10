@@ -76,9 +76,11 @@ GO
 
 UPDATE Speakers SET LastName = 'Community'
 WHERE SpeakerId = 13;
+GO
 
 UPDATE Speakers SET Title = 'Comunidad'
 WHERE SpeakerId = 13;
+GO
 
 UPDATE Speakers SET PhotoUrl = 'https://sessionize.com/image/b41a-1140o400o3-XgLoefC4kNqJZphJ1ivQR2.png'
 WHERE SpeakerId = 13;
