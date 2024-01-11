@@ -46,6 +46,20 @@ UPDATE Speakers SET
 WHERE SpeakerId = 12;
 GO
 
+UPDATE Speakers
+SET 
+    FirstName = 'Tech',
+    LastName = 'Community',
+    Title = 'Comunidad',
+    Email = 'admin@tech-community.org',
+    Bio = 'Somos una comunidad liderada por un grupo de guatemaltecos fundada en el año 2018 con la finalidad  de compartir conocimiento en el campo de tecnología sin fines de lucro. Nuestra misión es a apoyar las necesidades tecnológicas de Guatemala y LATAM por medio de meetups (en persona y virtuales) en distintas ramas de tecnología como DevOps, Cloud Computing, Software Development y Data & AI.',
+    PhotoUrl = null,
+    TwitterHandle = '@TechCommunityGT',
+    LinkedInProfile = 'https://linkedin.com/company/86732919',
+    GitHubProfile = 'https://github.com/tech-community',
+    Website = 'https://linktr.ee/techcommunity'
+WHERE SpeakerId = 13;
+GO
 
 UPDATE Speakers
 SET 
@@ -59,7 +73,7 @@ SET
     LinkedInProfile = null,
     GitHubProfile = null,
     Website = null
-WHERE SpeakerId = 13;
+WHERE SpeakerId = 14;
 GO
 
 UPDATE Sponsors
