@@ -1,0 +1,11 @@
+### Get all speakers
+GET http://localhost:7071/api/speakers/null
+
+### Get all sessions
+GET http://localhost:7071/api/sessions/null
+
+### Get all agenda items
+GET http://localhost:7071/api/agenda/null
+
+### Get all speakers
+GET http://localhost:7071/api/sponsors/null

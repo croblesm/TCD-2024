@@ -448,4 +448,6 @@ funcignore
 bin/
 obj/
 
-# Ignore the .vscode folder
+# Ignore DAB files
+azure/dab/.env
+azure/dab/dab-config.json.bak
