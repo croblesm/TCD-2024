@@ -889,13 +889,19 @@ VALUES (@SponsorName, @Description, @LogoUrl, @WebsiteUrl);]]></Value>
 IF @AgendaId IS NULL
     SELECT 
         a.*, 
-        s.Title, s.Description, s.SessionType, s.Level, s.Duration, s.SpeakerId FROM Agenda a
-    INNER JOIN Sessions s ON a.SessionId = s.SessionId -- Get all sessions if no ID is provided
+        s.Title, s.Description, s.SessionType, s.Level, s.Duration,
+        sp.FirstName, sp.LastName, sp.PhotoUrl
+    FROM Agenda a
+    INNER JOIN Sessions s ON a.SessionId = s.SessionId
+    INNER JOIN Speakers sp ON s.SpeakerId = sp.SpeakerId
 ELSE
     SELECT 
         a.*, 
-        s.Title, s.Description, s.SessionType, s.Level, s.Duration, s.SpeakerId FROM Agenda a
+        s.Title, s.Description, s.SessionType, s.Level, s.Duration,
+        sp.FirstName, sp.LastName, sp.PhotoUrl
+    FROM Agenda a
     INNER JOIN Sessions s ON a.SessionId = s.SessionId
+    INNER JOIN Speakers sp ON s.SpeakerId = sp.SpeakerId
     WHERE a.AgendaId = @AgendaId; -- Get specific Agenda item if ID is provided]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -916,6 +922,15 @@ ELSE
 					<References Name="[dbo].[Sessions].[SessionId]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Speakers]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Sessions].[SpeakerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[SpeakerId]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[Sessions].[Title]" />
 				</Entry>
 				<Entry>
@@ -931,7 +946,13 @@ ELSE
 					<References Name="[dbo].[Sessions].[Duration]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Sessions].[SpeakerId]" />
+					<References Name="[dbo].[Speakers].[FirstName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[LastName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Speakers].[PhotoUrl]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Agenda].[AgendaId]" />
@@ -964,7 +985,7 @@ ELSE
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="43" />
-				<Property Name="Length" Value="594" />
+				<Property Name="Length" Value="745" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="-- Create stored procedure to get speakers&#xA;CREATE PROCEDURE getAgenda&#xA;    @AgendaId INT = NULL&#xA;AS" />

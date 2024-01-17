@@ -47,7 +47,9 @@ namespace TCD2024.Agenda
                         SessionType = result.SessionType,
                         Level = result.Level,
                         Duration = result.Duration,
-                        SpeakerId = result.SpeakerId
+                        FirstName = result.FirstName,
+                        LastName = result.LastName,
+                        PhotoUrl = result.PhotoUrl
                     }
                 };
 
@@ -87,7 +89,9 @@ namespace TCD2024.Agenda
         public string SessionType { get; set; }
         public string Level { get; set; }
         public int Duration { get; set; }
-        public int SpeakerId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhotoUrl { get; set; }
         public List<Agenda> Agendas { get; set; }
     }
 }
