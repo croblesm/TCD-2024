@@ -106,5 +106,5 @@ GO
 -- New sponsor
 INSERT INTO Sponsors (SponsorName, Description, LogoUrl, WebsiteUrl)  
 VALUES
-('EduKids', 'Academia de tecnología la cuál prepara a niños y jóvenes para enfrentar el mundo tecnológico a través de la robótica', NULL, 'https://www.facebook.com/edukidsgt');
+('EduKids', 'Academia de tecnología la cuál prepara a niños y jóvenes para enfrentar el mundo tecnológico a través de la robótica', 'https://github.com/croblesm/TCD-2024/blob/main/Images/EduKids.png?raw=true', 'https://www.facebook.com/edukidsgt');
 GO
