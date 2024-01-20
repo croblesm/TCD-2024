@@ -7,7 +7,7 @@ GET https://127.0.0.1:5001/api/Sponsor/SponsorId/1
 ### Get speakers first and last name**
 GET https://127.0.0.1:5001/api/Speaker?$select=FirstName,LastName
 
-### Get speakers details when fist name = Orlando
+### Get speakers details when fist name = Bob
 GET https://127.0.0.1:5001/api/Speaker?$filter=FirstName eq 'Bob'
 
 ### Get speakers first and last name. Ordered by first name descending
